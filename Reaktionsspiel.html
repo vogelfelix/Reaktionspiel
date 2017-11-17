@@ -4,12 +4,20 @@
     <meta charset="utf-8">
     <title>Reaktionsspiel</title>
     <style media="screen">
+    html, body{
+      height: 100%;
+
+      cursor: url(Illustrationen/Haken2.png), auto;
+      /*cursor: copy;*/
+
+    }
       #shape{
         position: absolute;
       }
       p{
-        
+
       }
+
     </style>
 
   </head>
@@ -56,6 +64,8 @@
     figure.style.left = left+"px";
     figure.style.borderRadius = borderRadius+"%";
     startTime = new Date().getTime();
+
+    var images = ["Fisch.png", "Fisch2.png", "Fisch3.png"]
 
   }
 
