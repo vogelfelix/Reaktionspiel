@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Reaktionsspiel</title>
+    <style media="screen">
+      #shape{
+        position: absolute;
+      }
+      p{
+        
+      }
+    </style>
+
+  </head>
+
+  <p>Deine Zeit ist</p>
+
+
+  <div id="shape"></div>
+  <div id="time"></div>
+  <div id="Spare"></div>
+  <script type="text/javascript">
+
+
+
+  var figure = document.getElementById("shape");
+  var startTime = new Date().getTime();
+
+  function getRandomInt (min, max){
+    var randomInt = Math.floor(Math.random()*(max-min+1)+min);
+    return randomInt;
+  }
+
+  function randomColor(){
+    var color="#";
+    for (x=0;x<6;x++)
+    {
+      color+=
+      "0123456789ABCDEF"
+      .charAt (Math.round (Math.random ()*1000)%16);
+    }
+    return color;
+  }
+
+
+  function showFigure(){
+    var size = getRandomInt (100,400);
+    var top = getRandomInt (200,500);
+    var left = getRandomInt (100, 1000);
+    var borderRadius = getRandomInt (0,1)*(50);
+    figure.style.background = randomColor ();
+    figure.style.width = size+"px";
+    figure.style.height = size+"px";
+    figure.style.top = top+"px";
+    figure.style.left = left+"px";
+    figure.style.borderRadius = borderRadius+"%";
+    startTime = new Date().getTime();
+
+  }
+
+
+
+  showFigure();
+
+  figure.onclick = function(){
+    var endTime = new Date().getTime();
+    var dauerTime = (endTime - startTime) / 1000;
+    console.log(dauerTime);
+    document.getElementById("time").innerHTML=dauerTime;
+    showFigure();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+  </body>
+</html>
