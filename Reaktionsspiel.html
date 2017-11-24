@@ -6,27 +6,41 @@
     <style media="screen">
     html, body{
       height: 100%;
-
+      background-image: url(Deep-Blue-Sea.jpg);
       cursor: url(Illustrationen/Haken2.png), auto;
       /*cursor: copy;*/
 
     }
       #shape{
         position: absolute;
+        background-position: center;
+        background-repeat: no-repeat;
       }
       p{
+        color: #fff;
+        font-size: 1.5em;
+        font-family: sans-serif;
+        text-align: center;
+        }
 
-      }
+      h1{
+        color: #fff;
+        font-size: 3em;
+        font-family: sans-serif;
+        text-align: center;
+        }
 
     </style>
 
   </head>
 
-  <p>Deine Zeit ist</p>
+  <h1>Fang die Fische</h1>
+
+  <p>Deine Zeit ist <br><span id="time"></span></p>
 
 
   <div id="shape"></div>
-  <div id="time"></div>
+
   <div id="Spare"></div>
   <script type="text/javascript">
 
@@ -55,19 +69,37 @@
 
 
   function showFigure(){
+    var images = ["Illustrationen/Fisch.png", "Illustrationen/Fisch2.png", "Illustrationen/Fisch3.png", "Illustrationen/Fisch5.png", "Illustrationen/Fisch6.png", "Illustrationen/Fisch7.png", "Illustrationen/Fisch8.png" ]; //[0] => Fisch.png [1] => Fisch2.png [2] => Fisch3.png [3] => Fisch4.png [4] => Fisch5.png [5] => Fisch6.png [6] => Fisch7.png
     var size = getRandomInt (100,400);
     var top = getRandomInt (200,500);
     var left = getRandomInt (100, 1000);
-    var borderRadius = getRandomInt (0,1)*(50);
-    figure.style.background = randomColor ();
+    // var borderRadius = getRandomInt (0,1)*(50);
+
     figure.style.width = size+"px";
     figure.style.height = size+"px";
     figure.style.top = top+"px";
     figure.style.left = left+"px";
-    figure.style.borderRadius = borderRadius+"%";
+    figure.style.backgroundImage = "url("+images[getRandomInt(0,images.length-1)]+")";
+    figure.style.backgroundSize = "contain";
+
+
+
+    if(getRandomInt(0,1) == 0){
+      figure.style.transform= "scaleX(-1)";
+      console.log("spiegel das Bild");
+    }
+    else{
+      console.log("nicht");
+      figure.style.transform= "scaleX(1)";
+    }
+
+
+
+
+    // figure.style.borderRadius = borderRadius+"%";
     startTime = new Date().getTime();
 
-    var images = ["Fisch.png", "Fisch2.png", "Fisch3.png"]
+
 
   }
 
@@ -78,7 +110,6 @@
   figure.onclick = function(){
     var endTime = new Date().getTime();
     var dauerTime = (endTime - startTime) / 1000;
-    console.log(dauerTime);
     document.getElementById("time").innerHTML=dauerTime;
     showFigure();
   }
